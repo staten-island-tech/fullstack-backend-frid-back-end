@@ -4,7 +4,7 @@ const dummyInfo = [
     {
         postID: 1326962963783,
         likes: 20,
-        comments: 7, 
+        comments: 5, 
         UserID: 30470578947,
     }
 ];
