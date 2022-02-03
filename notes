@@ -1,0 +1,18 @@
+
+npm install express --save
+
+npm i mongoose
+
+npm i nodemon --save-dev
+    - the dev thing means it wont be shipped to client
+
+npm run dev
+
+npm run start
+
+
+
+
+test 
+- 127.0.0.1:3000/api/v1/posts
+- 127.0.0.1:3000/api/v1/posts/id:61f5d9d9000fb29e24d1bad9
