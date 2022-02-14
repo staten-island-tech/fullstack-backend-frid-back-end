@@ -4,23 +4,26 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: [true, "A post must have a title"],
     trim: true,
+    default: "N/A",
   },
   songAmount: {
-    type: Number, 
-    required: [true, "No empty playlists Permitted"],  
+    type: Number,
+    required: [true, "No empty playlists Permitted"],
+    default: 0,
   },
   song1: {
     songName: {
       type: String,
       required: [true, "A song must have a name"],
-      // trim: true,
+      default: "N/A",
+      trim: true,
     },
     artist: {
       type: String,
     },
     duration: {
       type: Number,
-      required: [true, "The song must be more tha 0 seconds"],
+      required: [true, "The song must have length"],
       default: 0,
     },
   },
@@ -54,7 +57,7 @@ const postSchema = new mongoose.Schema({
         type: Number,
         required: [true, "User ID?"],
       },
-    }
+    },
   },
 });
 const Post = mongoose.model("Posts", postSchema);
