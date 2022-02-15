@@ -5,6 +5,9 @@ const globalErrorHandler = require("./controllers/errorController");
 const userRouter = require("./routes/userRoutes");
 const postRouter = require("./routes/postRoutes");
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(morgan("dev"));
 app.use(express.json());
