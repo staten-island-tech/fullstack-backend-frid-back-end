@@ -1,7 +1,8 @@
- const { post } = require('../routes/userRoutes');
+const { post } = require('../routes/userRoutes');
 const Post = require('./../models/postModel');
+const AppError = require('./../appError');
 
-exports.getAllPosts = async (req, res) => { 
+exports.getAllPosts = async (req, res, next) => { 
     try {
         const posts = await Post.find();
     res.status(200).json({
@@ -12,18 +13,18 @@ exports.getAllPosts = async (req, res) => {
         }
     })
 } catch (error) {
-    res.status(404).json({
-        status: 'fail',
-        message: error
-    })
+    next(error);
 }
 };
 
 
-exports.getPost = async (req, res) => {
+exports.getPost = async (req, res, next) => {
     try {
     const post = await Post.findById(req.params.id);
-    
+    if (!post) {
+        return next(new AppError('No post found with this ID', 404))
+    }
+
     res.status(200).json({
         status: 'success',
         data: {
@@ -31,15 +32,12 @@ exports.getPost = async (req, res) => {
         }
     });
 }  catch (error){
-    res.status(404).json({
-        status: 'fail',
-        message: error
-    })
+    next(error);
 }
 }
 
 
-exports.createPost = async (req, res) => {
+exports.createPost = async (req, res, next) => {
     try {
     const newPost = await Post.create(req.body);
     res.status(201).json({
@@ -49,19 +47,19 @@ exports.createPost = async (req, res) => {
         }
     })
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            message: error
-        });
-    }
+        next(error);
+    };
 }
 
-exports.updatePost = async (req, res) => {
+exports.updatePost = async (req, res, next) => {
     try {
         const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
         });
+        if (!post) {
+            return next(new AppError('No post found with this ID', 404))
+        }
 
         res.status(200).json({
             status: 'success',
@@ -70,22 +68,19 @@ exports.updatePost = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            message: error
-        });
+        next(error);
     }
 }
-exports.deletePost = async (req, res) => {
+exports.deletePost = async (req, res, next) => {
     try {
-        await Post.findByIdAndDelete(req.params.id);
+        const post = await Post.findByIdAndDelete(req.params.id);
         res.status(204).json({
             status: 'success',
         });
+        if (!post) {
+            return next(new AppError('No post found with this ID', 404))
+        }
     } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            message: error
-        });
+      next(error);
     }
 }
