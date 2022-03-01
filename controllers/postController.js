@@ -11,10 +11,10 @@ exports.getAllPosts = async (req, res, next) => {
         data: {
             posts
         }
-    })
-} catch (error) {
+    });
+    } catch (error) {
     next(error);
-}
+    }
 };
 
 

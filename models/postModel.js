@@ -62,7 +62,7 @@ const postSchema = new mongoose.Schema({
       },
       userID: {
         type: Number,
-        required: [true, "User ID?"],
+        required: [false, "User ID?"],
       },
     },
   },

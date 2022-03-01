@@ -1,5 +1,5 @@
-const express = require("express");
 const postCon = require("../controllers/postController");
+const express = require("express");
 
 const router = express.Router();
 
