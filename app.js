@@ -4,13 +4,12 @@ const AppError = require("./appError");
 const globalErrorHandler = require("./controllers/errorController");
 const userRouter = require("./routes/userRoutes");
 const postRouter = require("./routes/postRoutes");
-const app = express();
 const cors = require("cors");
-
-app.use(cors());
+const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 app.use((req, res, next) => {
   req.RequestTime = new Date().toISOString();
