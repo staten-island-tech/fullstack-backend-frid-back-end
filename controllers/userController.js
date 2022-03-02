@@ -1,7 +1,8 @@
 const req = require("express/lib/request");
 const res = require("express/lib/response");
+const AppError = require('./../appError');
 
-exports.getAllUsers = async(req, res) => {
+exports.getAllUsers = async(req, res, next) => {
     try {
         const users = await User.find();
     res.status(200).json({
