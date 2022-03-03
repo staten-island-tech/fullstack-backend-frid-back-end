@@ -11,5 +11,4 @@ router.route('/').get(userCon.getAllUsers);
 
 router.post('/create', userCon.createUser);
 
-
 module.exports = router;

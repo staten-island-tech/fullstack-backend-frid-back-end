@@ -46,12 +46,13 @@ const postSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  comments: {
-    totalComments: {
-      type: Number,
-      default: 0,
-    },
-    comment1: {
+  comments:[
+    {
+      commentNumber: {
+        type: Number,
+        default: 0,
+        required: [true, "how much comments?"],
+      },
       commentContent: {
         type: String,
         default: "type comment here",
@@ -60,11 +61,20 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 0,
       },
+      userName: {
+        type: String,
+        default: "True_Busty_Bird_Fan",
+        required: [false, "Who posted?"],
+      },
       userID: {
         type: Number,
         required: [false, "User ID?"],
       },
     },
+  ],
+  totalComments: {
+    type: Number,
+    default: 0,
   },
 });
 const Post = mongoose.model("Posts", postSchema);
