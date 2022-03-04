@@ -61,6 +61,10 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 0,
       },
+      commentDisLikes: {
+        type: Number,
+        default: 0,
+      },
       userName: {
         type: String,
         default: "True_Busty_Bird_Fan",
