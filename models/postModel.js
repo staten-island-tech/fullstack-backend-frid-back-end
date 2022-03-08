@@ -11,6 +11,10 @@ const postSchema = new mongoose.Schema({
     required: [true, "No empty playlists Permitted"],
     default: 0,
   },
+  userName: {
+    type: String,
+    required: [false, "Who posted this??"],
+  },
   songs: [
     {
       songName: {
@@ -65,7 +69,7 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 0,
       },
-      userName: {
+      commentUserName: {
         type: String,
         default: "True_Busty_Bird_Fan",
         required: [false, "Who posted?"],
