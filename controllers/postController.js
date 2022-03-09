@@ -54,7 +54,7 @@ exports.createPost = async (req, res, next) => {
 exports.updatePost = async (req, res, next) => {
     try {
         const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
+            new: false,
             runValidators: true
         });
         if (!post) {
