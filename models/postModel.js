@@ -32,9 +32,10 @@ const postSchema = new mongoose.Schema({
         type: String,
       },
       duration: {
-        type: Number,
+        type: String,
         required: [true, "The song must have length"],
-        default: 0,
+        default: "0",
+        trim: true,
       },
     }
   ],
