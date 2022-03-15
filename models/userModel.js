@@ -6,9 +6,38 @@ const userSchema = new mongoose.Schema({
         trim: true,
         default: "Bob",   
     },
-    createdAt: {
+    AccountCreatedAt: {
         type: Date,
         default: Date.now(),
+    },
+    email: {
+        type: String,
+        required: [true, "A account must have a Gmail"],
+        trim: true,
+        default: "Scam@gmail.com",
+    },
+    following: [
+        {
+            userID: {
+                type: Number,
+                required: [false, "User ID?"],
+            },
+        }
+    ],
+    totalFollowing: {
+        type: Number,
+        default: 0,
+    },
+    totalFollowers: {
+        type: Number,
+        default: 0,
+    },
+    userSettings: {
+
+    },
+    bustyMode: {
+        type: String,
+        default: "No",
     }
 });
 const User = mongoose.model("Users", userSchema);
