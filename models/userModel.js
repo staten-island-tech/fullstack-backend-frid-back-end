@@ -28,6 +28,14 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    followers: [
+        {
+            userID: {
+                type: Number,
+                required: [false, "User ID?"],
+            },
+        }
+    ],
     totalFollowers: {
         type: Number,
         default: 0,

@@ -39,6 +39,23 @@ const postSchema = new mongoose.Schema({
       },
     }
   ],
+  tags: [
+    {
+      tagName: {
+        type: String,
+        required: [false, "The playlist should have soe tags"],
+        trim: true,
+      },
+      tagNumber: {
+        type: Number,
+      }
+    }
+  ],
+  totalTags: {
+    type: Number,
+    required: [false, "How many tags?"],
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
