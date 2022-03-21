@@ -1,52 +1,46 @@
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
-    userName: {
-        type: String,
-        required: [true, "A account must have a user name"],
-        trim: true,
-        default: "Bob",   
-    },
-    AccountCreatedAt: {
-        type: Date,
-        default: Date.now(),
-    },
-    email: {
-        type: String,
-        required: [true, "A account must have a Gmail"],
-        trim: true,
-        default: "Scam@gmail.com",
-    },
-    following: [
-        {
-            userID: {
-                type: Number,
-                required: [false, "User ID?"],
-            },
-        }
-    ],
-    totalFollowing: {
+  userName: {
+    type: String,
+    required: [true, "A account must have a user name"],
+    trim: true,
+    default: "Bob",
+  },
+  AccountCreatedAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  email: {
+    type: String,
+    required: [true, "A account must have a Gmail"],
+    trim: true,
+    default: "Scam@gmail.com",
+  },
+  following: [
+    {
+      userID: {
         type: Number,
-        default: 0,
+        required: [false, "User ID?"],
+      },
     },
-    followers: [
-        {
-            userID: {
-                type: Number,
-                required: [false, "User ID?"],
-            },
-        }
-    ],
-    totalFollowers: {
+  ],
+  totalFollowing: {
+    type: Number,
+    default: 0,
+  },
+  followers: [
+    {
+      userID: {
         type: Number,
-        default: 0,
+        required: [false, "User ID?"],
+      },
     },
-    userSettings: {
-
-    },
-    bustyMode: {
-        type: String,
-        default: "No",
-    }
+  ],
+  totalFollowers: {
+    type: Number,
+    default: 0,
+  },
+  userSettings: {},
 });
 const User = mongoose.model("Users", userSchema);
 
