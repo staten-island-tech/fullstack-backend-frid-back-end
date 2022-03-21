@@ -3,10 +3,13 @@ const express = require("express");
 
 const router = express.Router();
 
-router.route('/:id').get(postCon.getPost).patch(postCon.updatePost).delete(postCon.deletePost);
+router.route("/:id").get(postCon.getPost).patch(postCon.updatePost);
+//   .delete(postCon.deletePost);
 
-router.route('/').get(postCon.getAllPosts);
+router.route("/").get(postCon.getAllPosts);
 
-router.post('/create', postCon.createPost);
+router.post("/create", postCon.createPost);
+
+router.delete("/:id", postCon.deletePost);
 
 module.exports = router;
