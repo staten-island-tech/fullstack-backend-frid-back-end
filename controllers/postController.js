@@ -69,7 +69,8 @@ exports.updatePost = async (req, res, next) => {
     next(error);
   }
 };
-exports.deletePost = async (req, res) => {
+
+exports.deletePost = async (req, res, next) => {
   try {
     const post = await Post.findByIdAndDelete(req.params.id);
     if (!post) {
