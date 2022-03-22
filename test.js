@@ -63,3 +63,5 @@ module.exports.test = function () {
       });
   }, 1000);
 };
+
+//node -e "require('./test.js').test()"
