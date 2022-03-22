@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/posts", postRouter);
-app.use("/api/v2/users", userRouter);
+app.use("/api/v1/users", userRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`${req.originalUrl} not found`, 404));

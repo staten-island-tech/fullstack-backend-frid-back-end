@@ -1,4 +1,4 @@
-// const { post } = require('../routes/postRoutes');
+const { posts } = require('../routes/postRoutes');
 const Post = require("./../models/postModel");
 const AppError = require("./../appError");
 

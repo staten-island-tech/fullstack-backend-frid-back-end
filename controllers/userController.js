@@ -1,7 +1,7 @@
 // const req = require("express/lib/request");
 // const res = require("express/lib/response");
 // const AppError = require('./../appError');
-// const { user } = require('../routes/userRoutes');
+const { user } = require('../routes/userRoutes');
 const User = require('./../models/userModel');
 const AppError = require('./../appError');
 
