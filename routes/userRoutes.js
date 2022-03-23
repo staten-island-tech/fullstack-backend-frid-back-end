@@ -11,4 +11,6 @@ router.route('/').get(userCon.getAllUsers);
 
 router.post('/create', userCon.createUser);
 
+router.delete("/:id", userCon.deleteUser);
+
 module.exports = router;
