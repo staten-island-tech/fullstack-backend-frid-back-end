@@ -5,6 +5,7 @@ dotenv.config({ path: "./config.env" });
 var spotifyApi = new SpotifyWebApi({
   clientId: process.env.ClientID,
   clientSecret: process.env.ClientSecret,
+  accessToken: process.env.SpotifyToken,
 });
 
 module.exports.getToken = function () {
@@ -22,7 +23,6 @@ module.exports.getToken = function () {
 };
 
 module.exports.getArtists = function () {
-  spotifyApi.getAccessToken();
   console.log(spotifyApi);
 
   setTimeout(() => {
@@ -61,6 +61,22 @@ module.exports.test = function () {
           error
         );
       });
+  }, 1000);
+};
+
+module.exports.setToken = function () {
+  console.log(spotifyApi);
+
+  spotifyApi.clientCredentialsGrant().then((data) => {
+    spotifyApi.setAccessToken(data.body["access_token"]);
+    var token = data.body["access_token"];
+    process.env.SpotifyToken = token;
+    return spotifyApi;
+  });
+
+  setTimeout(() => {
+    console.log(process.env.SpotifyToken);
+    console.log(spotifyApi);
   }, 1000);
 };
 
