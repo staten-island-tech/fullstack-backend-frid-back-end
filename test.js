@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const fs = require("fs");
 const SpotifyWebApi = require("spotify-web-api-node");
 dotenv.config({ path: "./config.env" });
 
@@ -71,11 +72,20 @@ module.exports.setToken = function () {
     spotifyApi.setAccessToken(data.body["access_token"]);
     var token = data.body["access_token"];
     process.env.SpotifyToken = token;
-    return spotifyApi;
+    return token;
   });
 
   setTimeout(() => {
-    console.log(process.env.SpotifyToken);
+    const content = process.env.SpotifyToken;
+
+    fs.writeFile("serenitynow.txt", content, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+
+      //file written successfully
+    });
     console.log(spotifyApi);
   }, 1000);
 };
