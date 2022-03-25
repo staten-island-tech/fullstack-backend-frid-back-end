@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    userDescription: {
+      type: String,
+      required: [true, "A account must have a description"],
+      trim: true,
+      default: "N/A",
+    },
     email: {
       type: String,
       required: [true, "A account must have a Gmail"],
