@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 const fs = require("fs");
+const { token } = require("morgan");
 const SpotifyWebApi = require("spotify-web-api-node");
 dotenv.config({ path: "./config.env" });
 
@@ -24,7 +25,14 @@ module.exports.getToken = function () {
 };
 
 module.exports.getArtists = function () {
-  console.log(spotifyApi);
+  fs.readFile("token.txt", "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    var token = data;
+    console.log(token);
+  });
 
   setTimeout(() => {
     spotifyApi
@@ -71,14 +79,7 @@ module.exports.setToken = function () {
   spotifyApi.clientCredentialsGrant().then((data) => {
     spotifyApi.setAccessToken(data.body["access_token"]);
     var token = data.body["access_token"];
-    process.env.SpotifyToken = token;
-    return token;
-  });
-
-  setTimeout(() => {
-    const content = process.env.SpotifyToken;
-
-    fs.writeFile("serenitynow.txt", content, (err) => {
+    fs.writeFile("token.txt", "", (err) => {
       if (err) {
         console.error(err);
         return;
@@ -86,8 +87,17 @@ module.exports.setToken = function () {
 
       //file written successfully
     });
-    console.log(spotifyApi);
-  }, 1000);
+    fs.appendFile("token.txt", token, (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+
+      //file written successfully
+    });
+  });
 };
+
+module.exports.readToken = function () {};
 
 //node -e "require('./test.js').test()"
