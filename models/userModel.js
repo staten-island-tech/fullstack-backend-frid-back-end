@@ -7,6 +7,11 @@ const userSchema = new mongoose.Schema(
       trim: true,
       default: "Bob",
     },
+    userProfilePic: {
+      type: String,
+      required: [false, "A account must have a user profile picture"],
+      default: "",
+    },
     AccountCreatedAt: {
       type: Date,
       default: Date.now(),
@@ -50,7 +55,7 @@ const userSchema = new mongoose.Schema(
     userSettings: {},
   },
   {
-    collection : 'users'
+    collection: "users",
   }
 );
 const User = mongoose.model("Users", userSchema);
