@@ -7,6 +7,11 @@ const userSchema = new mongoose.Schema(
       trim: true,
       default: "Bob",
     },
+    userPassword: {
+      type: String,
+      required: [true, "A account must have a password"],
+      trim: true,
+    },
     userProfilePic: {
       type: String,
       required: [false, "A account must have a user profile picture"],
