@@ -12,6 +12,23 @@ const userSchema = new mongoose.Schema(
       required: [false, "A account must have a user profile picture"],
       default: "",
     },
+    userPostedIDs: [
+      {
+        postID: {
+          type: String,
+        },
+        postedIDNumber: {
+          type: String,
+        },
+      },
+    ],
+    userSavedIDs: [
+      {
+        postID: {
+          type: String,
+        },
+      },
+    ],
     AccountCreatedAt: {
       type: Date,
       default: Date.now(),
