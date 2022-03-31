@@ -98,6 +98,6 @@ module.exports.setToken = function () {
   });
 };
 
-module.exports.readToken = function () {};
+// module.exports.readToken = function () {};
 
 //node -e "require('./test.js').test()"
