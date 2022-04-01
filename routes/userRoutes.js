@@ -6,14 +6,16 @@ const router = express.Router();
 
 // router.param('id', userCon.checkID);
 
-router.route('/:id').get(userCon.getUser).patch(userCon.updateUser).delete(userCon.deleteUser);
+router.route("/spotify").get(Spot.setToken);
 
-router.route('/').get(userCon.getAllUsers);
+router
+  .route("/:id")
+  .get(userCon.getUser)
+  .patch(userCon.updateUser)
+  .delete(userCon.deleteUser);
 
-router.route('/spotify').get(Spot.setToken);
+router.route("/").get(userCon.getAllUsers);
 
-router.post('/create', userCon.createUser);
-
-router.delete("/:id", userCon.deleteUser);
+router.post("/create", userCon.createUser);
 
 module.exports = router;
