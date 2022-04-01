@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const { token } = require("morgan");
 const SpotifyWebApi = require("spotify-web-api-node");
+const AppError = require('./appError');
 dotenv.config({ path: "./config.env" });
 
 var spotifyApi = new SpotifyWebApi({
@@ -95,7 +96,10 @@ exports.setToken = function () {
 
       //file written successfully
     });
+    res.status(201).json({
+      status: "success",
   });
+});
 };
 
 // module.exports.readToken = function () {};
