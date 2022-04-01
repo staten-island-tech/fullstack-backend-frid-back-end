@@ -74,7 +74,7 @@ module.exports.test = function () {
   }, 1000);
 };
 
-exports.setToken = function () {
+exports.setToken = function (req, res, next) {
   console.log(spotifyApi);
 
   spotifyApi.clientCredentialsGrant().then((data) => {
