@@ -15,6 +15,17 @@ const userSchema = new mongoose.Schema({
     required: [true, "A account must have an email"],
     trim: true,
     lowercase: true,
+    validate: [validator.isEmail, 'Please enter a valid email address'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Please enter a password'],
+    minLength: 8
+  },
+  passwordConfirm: {
+    type: String,
+    required: [true, 'Please confirm your password'],
+    minLength: 8,
   },
   following: [
     {
