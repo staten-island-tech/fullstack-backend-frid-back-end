@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 const userSchema = new mongoose.Schema(
   {
     userName: {
       type: String,
       required: [true, "A account must have a user name"],
       trim: true,
-      default: "Bob",
     },
-    userProfilePic: {
-      type: String,
-      required: [false, "A account must have a user profile picture"],
-      default: "",
-    },
+    // userProfilePic: {
+    //   type: String,
+    //   required: [false, "A account must have a user profile picture"],
+    //   default: "",
+    // },
     userPostedIDs: [
       {
         postID: {
@@ -41,9 +41,10 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "A account must have a Gmail"],
+      required: [true, "A account must have an email"],
       trim: true,
-      default: "Scam@gmail.com",
+      lowercase: true,
+      validate: [validator.isEmail, 'Please enter a valid email address'],
     },
     following: [
       {
