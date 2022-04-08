@@ -23,6 +23,7 @@
     "mongoose": "^5.13.14",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
-    "spotify-web-api-node": "^5.0.2"
+    "spotify-web-api-node": "^5.0.2",
+    "validator": "^13.7.0"
   }
 }
