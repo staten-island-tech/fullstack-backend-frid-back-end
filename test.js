@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const { token } = require("morgan");
 const SpotifyWebApi = require("spotify-web-api-node");
-const AppError = require('./appError');
+const AppError = require("./appError");
 dotenv.config({ path: "./config.env" });
 
 var spotifyApi = new SpotifyWebApi({
@@ -10,20 +10,6 @@ var spotifyApi = new SpotifyWebApi({
   clientSecret: process.env.ClientSecret,
   accessToken: process.env.SpotifyToken,
 });
-
-module.exports.getToken = function () {
-  console.log(spotifyApi);
-
-  spotifyApi.clientCredentialsGrant().then((data) => {
-    spotifyApi.setAccessToken(data.body["access_token"]);
-    var token = data.body["access_token"];
-    return token;
-  });
-
-  setTimeout(() => {
-    console.log(spotifyApi);
-  }, 1000);
-};
 
 module.exports.getArtists = function () {
   fs.readFile("token.txt", "utf8", (err, data) => {
@@ -74,7 +60,7 @@ module.exports.test = function () {
   }, 1000);
 };
 
-exports.setToken = function () {
+exports.setToken = function (req, res, next) {
   console.log(spotifyApi);
 
   spotifyApi.clientCredentialsGrant().then((data) => {
@@ -98,8 +84,8 @@ exports.setToken = function () {
     });
     res.status(201).json({
       status: "success",
+    });
   });
-});
 };
 
 module.exports.readToken = function () {};
