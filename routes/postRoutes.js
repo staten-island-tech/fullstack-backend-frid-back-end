@@ -1,15 +1,13 @@
 const postCon = require("../controllers/postController");
 const express = require("express");
-const { auth } = require("express-openid-connect");
+const { auth, requiresAuth } = require("express-openid-connect");
 
 const router = express.Router();
 
-router.route('/:id').get(postCon.getPost)
-
-router.route('/:id').patch(postCon.updatePost).delete(postCon.deletePost);
+router.route('/:id').get(postCon.getPost).patch(requiresAuth(), postCon.updatePost).delete(requiresAuth(), postCon.deletePost);
 
 router.route('/').get(postCon.getAllPosts);
 
-router.post('/create', postCon.createPost);
+router.post('/create', requiresAuth(), postCon.createPost);
 
 module.exports = router;
