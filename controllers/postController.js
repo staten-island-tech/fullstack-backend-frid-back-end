@@ -2,9 +2,15 @@ const { posts } = require('../routes/postRoutes');
 const Post = require("./../models/postModel");
 const AppError = require("./../appError");
 
-exports.getAllPosts = async (req, res, next) => {
-  try {
-    const posts = await Post.find();
+// exports.authend = (req, res, next) =>{
+//     req.oidc.isAuthendicated() ? 'logged in' : 'logged out';
+//     next();
+// }
+
+exports.getAllPosts = async (req, res, next) => { 
+    try {
+        //this.authend (req, res, next);
+        const posts = await Post.find();
     res.status(200).json({
       status: "success",
       results: posts.length,
