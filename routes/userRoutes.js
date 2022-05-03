@@ -1,12 +1,16 @@
 const userCon = require("../controllers/userController");
 const express = require("express");
-const Spot = require("../test");
+const Spotify = require("../test");
 
 const router = express.Router();
 
 // router.param('id', userCon.checkID);
 
-router.route("/spotify").get(Spot.setToken);
+router.route("/spotifyToken").get(Spotify.setToken);
+
+router.route("/getArtist").get(Spotify.getArtists);
+
+router.route("/searchTracks").get(Spotify.search);
 
 router
   .route("/:id")
