@@ -10,7 +10,7 @@ router.route("/spotifyToken").get(Spotify.setToken);
 
 router.route("/getArtist").get(Spotify.getArtists);
 
-router.route("/searchTracks").get(Spotify.search);
+router.route("/searchTracks").patch(Spotify.search);
 
 router
   .route("/:id")

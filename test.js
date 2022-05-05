@@ -74,7 +74,7 @@ module.exports.search = function (req, res, next) {
     spotifyApi.setAccessToken(token);
     setTimeout(() => {
       spotifyApi
-        .searchTracks("bach")
+        .searchTracks(req.body.search)
         .then(function (data) {
           console.log(data);
           var response = data.body.tracks.items;
@@ -83,10 +83,7 @@ module.exports.search = function (req, res, next) {
           });
         })
         .catch((error) => {
-          console.log(
-            "Something went wrong when retrieving an access token",
-            error
-          );
+          console.log(error);
         });
     }, 1000);
   });
