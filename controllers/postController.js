@@ -10,7 +10,7 @@ const AppError = require('./../appError');
 exports.getAllPosts = async (req, res, next) => { 
     try {
         //this.authend (req, res, next);
-        const posts = await Post.find();
+        const posts = await Post.find(req.query);
     res.status(200).json({
         status: 'success',
         results: posts.length,
