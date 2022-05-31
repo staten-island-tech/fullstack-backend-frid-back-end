@@ -13,7 +13,11 @@ const postSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    required: [false, "Who posted this??"],
+    required: [true, "Who posted this?"],
+  },
+  userID: {
+    type: String,
+    required: [true, "Who posted this?"],
   },
   songs: [
     {
@@ -37,7 +41,7 @@ const postSchema = new mongoose.Schema({
         default: "0",
         trim: true,
       },
-    }
+    },
   ],
   tags: [
     {
@@ -48,8 +52,8 @@ const postSchema = new mongoose.Schema({
       },
       tagNumber: {
         type: Number,
-      }
-    }
+      },
+    },
   ],
   totalTags: {
     type: Number,
@@ -68,7 +72,7 @@ const postSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  comments:[
+  comments: [
     {
       commentNumber: {
         type: Number,
