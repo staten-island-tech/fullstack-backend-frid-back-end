@@ -7,7 +7,7 @@ const AppError = require("./../appError");
 
 exports.getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find();
+    const users = await User.find(req.query);
     res.status(200).json({
       status: "success",
       results: users.length,
