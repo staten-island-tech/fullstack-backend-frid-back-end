@@ -1,21 +1,19 @@
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 dotenv.config({ path: "./config.env" });
-const { auth } = require("express-openid-connect");
 
-process.on('uncaughtException', err => {
-    console.log(err.name, err.message);
-    console.log("UNCAUGHT EXCEPTION! SERVER IS SHUTTING DOWN");  
-    process.exit(1);
+process.on("uncaughtException", (err) => {
+  console.log(err.name, err.message);
+  console.log("UNCAUGHT EXCEPTION! SERVER IS SHUTTING DOWN");
+  process.exit(1);
 });
 
-const app = require('./app');
+const app = require("./app");
 
 const DB = process.env.DATABASE.replace(
   "<password>",
   process.env.DATABASE_PASSWORD
 );
-
 
 mongoose
   .connect(DB, {
@@ -25,7 +23,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected to DataBase! ╲⎝ ( ͡° ͜ʖ ͡°) ⎠╱");
+    console.log("Connected to DataBase!");
   });
 
 const port = process.env.PORT || 3000;
