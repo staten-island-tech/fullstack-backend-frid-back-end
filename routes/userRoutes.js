@@ -4,8 +4,6 @@ const Spotify = require("../test");
 
 const router = express.Router();
 
-// router.param('id', userCon.checkID);
-
 router.route("/spotifyToken").get(Spotify.setToken);
 
 router.route("/getArtist").get(Spotify.getArtists);

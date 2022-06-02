@@ -1,6 +1,5 @@
 const postCon = require("../controllers/postController");
 const express = require("express");
-const { auth, requiresAuth } = require("express-openid-connect");
 
 const router = express.Router();
 
