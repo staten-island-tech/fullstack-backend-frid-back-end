@@ -88,5 +88,3 @@ module.exports.search = function (req, res, next) {
     }, 1000);
   });
 };
-
-//node -e "require('./test.js').test()"
