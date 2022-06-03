@@ -1,16 +1,9 @@
-const { posts } = require('../routes/postRoutes');
 const Post = require("./../models/postModel");
 const AppError = require("./../appError");
 
-// exports.authend = (req, res, next) =>{
-//     req.oidc.isAuthendicated() ? 'logged in' : 'logged out';
-//     next();
-// }
-
-exports.getAllPosts = async (req, res, next) => { 
-    try {
-        //this.authend (req, res, next);
-        const posts = await Post.find(req.query);
+exports.getAllPosts = async (req, res, next) => {
+  try {
+    const posts = await Post.find(req.query);
     res.status(200).json({
       status: "success",
       results: posts.length,
@@ -75,16 +68,16 @@ exports.updatePost = async (req, res, next) => {
     next(error);
   }
 };
-
 exports.deletePost = async (req, res, next) => {
   try {
     const post = await Post.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: "success",
+    });
     if (!post) {
-      res.status(204).send();
+      return next(new AppError("No post found with this ID", 404));
     }
-    res.send(`${post.postName} was yeeted & deleted`);
   } catch (error) {
     next(error);
-    console.log("No post found with this ID!");
   }
 };
